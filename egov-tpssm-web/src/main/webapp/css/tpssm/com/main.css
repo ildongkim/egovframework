@@ -43,3 +43,58 @@ textarea::-webkit-scrollbar { display: none; }
     font: 20px/30px "Malgun Gothic";
     letter-spacing: -2px;
 }
+
+.Static.sta_LOGIN_Image
+{
+	background : URL("../../../images/tpssm/com/intro_design.png") no-repeat center center;
+}
+
+.Static.sta_LOGIN_Bg
+{
+	border : 1px solid #cccdd2;
+	background : #ffffff;
+}
+
+.Static.img_LOGIN_Title
+{
+	border : 1px solid transparent;
+	background : URL("../../../images/tpssm/com/img_ADMIN_Title.png") no-repeat left bottom;
+	font : 36px "Malgun Gothic";
+}
+
+.Static.sta_WF_TxtRedL12 {
+    color: #f33e46;
+    font: 12px/18px "Malgun Gothic";
+}
+
+.Edit.edi_LOGIN_Id
+{
+	border : 1px solid transparent;
+	background : URL("../../../images/tpssm/com/edi_LOGIN_Id.png") no-repeat left center #eef0f6;
+	font : 17px "Malgun Gothic";
+}
+
+.Edit.edi_LOGIN_Pw
+{
+	border : 1px solid transparent;
+	background : URL("../../../images/tpssm/com/edi_LOGIN_Pw.png") no-repeat left center #eef0f6;
+	font : 17px "Malgun Gothic";
+}
+
+.Button.btn_LOGIN_Login {
+    border: 0px none;
+    background: #0c4ca4;
+    color: #ffffff;
+    text-align:center;
+}
+
+.Button.btn_LOGIN_Login .btn_login {
+	margin-top: 7px;
+	border: none; 
+	background: #0c4ca4; 
+	color: #fff; 
+	font-size: 18px; 
+	font-weight: bold; 
+	cursor: pointer;
+	font: 21px "Malgun Gothic"; 
+}

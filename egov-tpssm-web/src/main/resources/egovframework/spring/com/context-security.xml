@@ -25,10 +25,15 @@
  	<security:http pattern="/resource/**" security="none"/>
  	<security:http pattern="\A/WEB-INF/jsp/.*\Z" request-matcher="regex" security="none"/>
 
+ 	<!-- logoutSuccessUrl="/EgovContent.do" -->
+ 	<!-- loginFailureUrl="/uat/uia/egovLoginUsr.do?login_error=1" -->
+ 	<!-- concurrentExpiredUrl="/EgovContent.do" -->
+ 	<!-- defaultTargetUrl="/EgovContent.do" -->
+ 	
     <egov-security:config id="securityConfig"
 		loginUrl="/uat/uia/egovLoginUsr.do"
-		logoutSuccessUrl="/EgovContent.do"
-		loginFailureUrl="/uat/uia/egovLoginUsr.do?login_error=1"
+		logoutSuccessUrl="/main.do"
+		loginFailureUrl="/main.do?login_error=1"
 		accessDeniedUrl="/sec/ram/accessDenied.do"
 
 		dataSource="egov.dataSource"
@@ -46,10 +51,10 @@
 		hashBase64="false"
 
 		concurrentMaxSessons="1"
-		concurrentExpiredUrl="/EgovContent.do"
+		concurrentExpiredUrl="/main.do"
 		errorIfMaximumExceeded="false"
 
-		defaultTargetUrl="/EgovContent.do"
+		defaultTargetUrl="/main.do"
 		alwaysUseDefaultTargetUrl="true"
 
 		sniff="true"
