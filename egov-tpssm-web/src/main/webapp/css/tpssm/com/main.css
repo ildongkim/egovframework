@@ -98,3 +98,19 @@ textarea::-webkit-scrollbar { display: none; }
 	cursor: pointer;
 	font: 21px "Malgun Gothic"; 
 }
+
+.Static.sta_LF_BtnBg
+{
+	border-top : 0px none;
+	border-right : 1px solid #0d2f79;
+	border-bottom : 0px none;
+	border-left : 0px none;
+	background : #154798;
+	height:auto;
+}
+
+.Button.btn_LF_Collapse
+{
+	border : 0px none;
+	background : URL("../../../images/tpssm/com/btn_LF_Collapse.png") no-repeat center center transparent;
+}
