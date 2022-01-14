@@ -64,7 +64,7 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 		boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();	
 		//미민증사용자 체크
 		if(!isAuthenticated) {
-			ModelAndView modelAndView = new ModelAndView("redirect:/uat/uia/egovLoginUsr.do");
+			ModelAndView modelAndView = new ModelAndView("redirect:/index.do");
 			throw new ModelAndViewDefiningException(modelAndView);
 		}
 		//인증된 권한 목록

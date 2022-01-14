@@ -13,10 +13,10 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
     <title>임시출입자 출입신청심의 시스템</title>
-    <link type="text/css" rel="stylesheet" href="./resource/bootstrap/dist/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="./css/tpssm/com/main.css">
-    <script type="text/javascript" src="./resource/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="./resource/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/resource/bootstrap/dist/css/bootstrap.min.css'/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/tpssm/com/main.css'/>">
+    <script type="text/javascript" src="<c:url value='/resource/jquery/dist/jquery.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resource/bootstrap/dist/js/bootstrap.bundle.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/egovframework/com/cmm/showModalDialog.js'/>" ></script>
     <script type="text/javascript" src="<c:url value='/js/egovframework/com/cmm/jquery.js'/>" ></script>
 </head>

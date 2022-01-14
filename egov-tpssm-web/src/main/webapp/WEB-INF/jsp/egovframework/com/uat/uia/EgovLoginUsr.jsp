@@ -263,13 +263,12 @@ function fnShowLogin(stat) {
 						<li><a href="#" onclick="goRegiUsr(); return false;"><spring:message code="comUatUia.loginForm.regist"/></a></li> <!-- 회원가입  -->
 					</ul>
 				</li>
-				<li>
-					<ul class="btn_idpw" >
-						<li><a href="#" onclick="fnShowLogin(1);"><spring:message code="comUatUia.loginForm.login.gpki"/></a></li><!-- 인증서로그인 -->
-						<li><a href="<c:url value='/uat/uia/egovGpkiIssu.do'/>"><spring:message code="comUatUia.loginForm.gpki.info"/></a></li><!-- 인증서안내 -->
-					</ul>
-				</li>
-				
+<!-- 				<li> -->
+<!-- 					<ul class="btn_idpw" > -->
+<%-- 						<li><a href="#" onclick="fnShowLogin(1);"><spring:message code="comUatUia.loginForm.login.gpki"/></a></li><!-- 인증서로그인 --> --%>
+<%-- 						<li><a href="<c:url value='/uat/uia/egovGpkiIssu.do'/>"><spring:message code="comUatUia.loginForm.gpki.info"/></a></li><!-- 인증서안내 --> --%>
+<!-- 					</ul> -->
+<!-- 				</li> -->
 			</ul>
 		</div>
 		
