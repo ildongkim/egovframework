@@ -124,12 +124,21 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 						springSecurity.doFilter(new RequestWrapperForSecurity(httpRequest, loginVO.getUserSe() + loginVO.getId(), loginVO.getUniqId()), httpResponse, chain);
 						LOGGER.debug("after security filter call....");
 
+						return;
 					}
 				//2017.03.03 	조성원 	시큐어코딩(ES)-부적절한 예외 처리[CWE-253, CWE-440, CWE-754]
 				} catch(IllegalArgumentException e) {
 					LOGGER.error("[IllegalArgumentException] Try/Catch...usingParameters Runing : "+ e.getMessage());
+					httpRequest.setAttribute("loginMessage", "");
+					RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
+					dispatcher.forward(httpRequest, httpResponse);
+					return;
 				} catch(Exception e) {
 					LOGGER.error("["+e.getClass()+"] Try/Catch...Exception : " + e.getMessage());
+					httpRequest.setAttribute("loginMessage", "");
+					RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
+					dispatcher.forward(httpRequest, httpResponse);
+					return;
 				}
 
 			} else if (isRemotelyAuthenticated == null) {
@@ -140,16 +149,16 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 					
 					// 보안점검 후속 조치(Password 검증)
 					if ((id == null || "".equals(id)) && (password == null || "".equals(password))) {
+						httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
 						RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
-						httpRequest.setAttribute("loginMessage", "");
 						dispatcher.forward(httpRequest, httpResponse);
 						//chain.doFilter(request, response);
 						return;
 					}
 					else if (password == null || password.equals("") || password.length() < 8 || password.length() > 20) {
-						httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login.password",request.getLocale()));
+						//httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login.password",request.getLocale()));
+						httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
 						RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
-						
 						dispatcher.forward(httpRequest, httpResponse);
 						//chain.doFilter(request, response);
 						return;
@@ -186,11 +195,16 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 				            }
 				        } catch(IllegalArgumentException e) {
 				            LOGGER.error("[IllegalArgumentException] : "+ e.getMessage());
-				        } catch(Exception ex) {
-							LOGGER.error("Login Exception : {}", ex.getCause(), ex);
-							httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
+				            request.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
 							RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
 							dispatcher.forward(httpRequest, httpResponse);
+							return;
+				        } catch(Exception ex) {
+							LOGGER.error("Login Exception : {}", ex.getCause(), ex);
+							request.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
+							RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
+							dispatcher.forward(httpRequest, httpResponse);
+							return;
 				        }
 				    }
 
@@ -229,20 +243,22 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 							LOGGER.debug("before security filter call....");
 							springSecurity.doFilter(new RequestWrapperForSecurity(httpRequest, loginVO.getUserSe() + loginVO.getId(), loginVO.getUniqId()), httpResponse, chain);
 							LOGGER.debug("after security filter call....");
-
+							
+							return;
 						} else {
 							//사용자 정보가 없는 경우 로그인 화면으로 redirect 시킴
 							httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
 							RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
 							dispatcher.forward(httpRequest, httpResponse);
-							
 							//chain.doFilter(request, response);
-
 							return;
-
 						}
 			        } catch(IllegalArgumentException e) {
 			            LOGGER.error("[IllegalArgumentException] : "+ e.getMessage());
+			            httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
+						RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
+						dispatcher.forward(httpRequest, httpResponse);
+			            return;
 					} catch (Exception ex) {
 						//DB인증 예외가 발생할 경우 로그인 화면으로 redirect 시킴
 						LOGGER.error("Login Exception : {}", ex.getCause(), ex);
@@ -250,13 +266,9 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 						RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
 						dispatcher.forward(httpRequest, httpResponse);
 						//chain.doFilter(request, response);
-
 						return;
-
 					}
-					return;
 				}
-
 			}
 		}
 

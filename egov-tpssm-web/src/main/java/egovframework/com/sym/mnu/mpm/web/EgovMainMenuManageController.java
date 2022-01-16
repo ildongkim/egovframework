@@ -153,7 +153,40 @@ public class EgovMainMenuManageController {
         }
     }
 
+    /**
+     * 좌측메뉴를 조회한다.
+     * @param menuManageVO MenuManageVO
+     * @param vStartP      String
+     * @return 출력페이지정보 "main_left"
+     * @exception Exception
+     */
+	@RequestMapping("/mainleft.do")
+	public String setMainLeftMenu(
+			@ModelAttribute("menuManageVO") MenuManageVO menuManageVO,
+    		@RequestParam("vStartP") String vStartP,
+    		ModelMap model) throws Exception { 
+		
+    	int iMenuNo = Integer.parseInt(vStartP);
+    	menuManageVO.setTempInt(iMenuNo);
+        model.addAttribute("resultVO", menuManageVO);
+        
+    	LoginVO user =
+			(LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 
+    	menuManageVO.setTmpId(user == null ? "" : EgovStringUtil.isNullToString(user.getId()));
+    	menuManageVO.setTmpPassword(user == null ? "" : EgovStringUtil.isNullToString(user.getPassword()));
+    	menuManageVO.setTmpUserSe(user == null ? "" : EgovStringUtil.isNullToString(user.getUserSe()));
+    	menuManageVO.setTmpName(user == null ? "" : EgovStringUtil.isNullToString(user.getName()));
+    	menuManageVO.setTmpEmail(user == null ? "" : EgovStringUtil.isNullToString(user.getEmail()));
+    	menuManageVO.setTmpOrgnztId(user == null ? "" : EgovStringUtil.isNullToString(user.getOrgnztId()));
+    	menuManageVO.setTmpUniqId(user == null ? "" : EgovStringUtil.isNullToString(user.getUniqId()));
+    	
+    	List<?> list_menulist = menuManageService.selectMainMenuLeft(menuManageVO);
+        model.addAttribute("list_menulist", list_menulist);
+
+		return "tpssm/com/main_left";
+	}
+	
     /**
      * 좌측메뉴를 조회한다.
      * @param menuManageVO MenuManageVO

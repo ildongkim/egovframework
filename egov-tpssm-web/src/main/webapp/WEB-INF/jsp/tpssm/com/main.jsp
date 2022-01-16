@@ -23,7 +23,7 @@
 <frameset frameborder="0" framespacing="0" rows="75, *, 45">
 	<frame name="_top" src="${pageContext.request.contextPath}/maintop.do" scrolling="no" title="헤더">
 		<frameset frameborder="0" framespacing="0" cols="20%, 80%">
-			<frame name="_left" src="${pageContext.request.contextPath}/mainleft.do" scrolling="yes" title="메뉴페이지">
+			<frame name="_left" src="${pageContext.request.contextPath}/mainleft.do?vStartP=<c:out value="${resultVO.menuNo}" />" scrolling="yes" title="메뉴페이지">
 			<frame name="_content" src="${pageContext.request.contextPath}/maincontent.do" title="메인페이지">
 		</frameset>
 	<frame name="_bottom" src="${pageContext.request.contextPath}/mainbottom.do" scrolling="no" title="푸터">

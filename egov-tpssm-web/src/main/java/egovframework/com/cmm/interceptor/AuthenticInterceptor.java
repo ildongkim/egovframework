@@ -73,6 +73,9 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 		boolean adminAuthUrlPatternMatcher = false;
 		//AntPathRequestMatcher
 		AntPathRequestMatcher antPathRequestMatcher = null;
+		
+		if (adminAuthPatternList == null) return true;
+		
 		//관리자가 아닐때 체크함
 		for(String adminAuthPattern : adminAuthPatternList){
 			antPathRequestMatcher = new AntPathRequestMatcher(adminAuthPattern);

@@ -16,9 +16,12 @@
 	            <mvc:exclude-mapping path="/validator.do"/>
 	            <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
 	            <mvc:exclude-mapping path="/uss/umt/EgovStplatCnfirm*"/>
-	            <mvc:exclude-mapping path="/uss/umt/EgovMberSbscrbView.do"/>
-	            <mvc:exclude-mapping path="/sec/rnc/EgovRlnmCnfirm.do"/>
 	            <mvc:exclude-mapping path="/uss/umt/EgovIdDplctCnfirmAjax.do"/>
+	            <mvc:exclude-mapping path="/uss/umt/EgovMberSbscrbView.do"/>
+	            <mvc:exclude-mapping path="/uss/umt/EgovMberSbscrb.do"/>
+	            <mvc:exclude-mapping path="/uss/umt/EgovEntrprsMberSbscrbView.do"/>
+	            <mvc:exclude-mapping path="/uss/umt/EgovEntrprsMberSbscrb.do"/>
+	            <mvc:exclude-mapping path="/sec/rnc/EgovRlnmCnfirm.do"/>
 	            <bean id="AuthenticInterceptor" class="egovframework.com.cmm.interceptor.AuthenticInterceptor"/>
 	        </mvc:interceptor>
 	    </mvc:interceptors>
